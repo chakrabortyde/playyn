@@ -1,3 +1,5 @@
+# Playyn - Online Music Store
+
 ## Problem statement
 
 Music is an integral part of everyone's lives. We tend to feel many different emotions through music.But nowadays, unless we are suggested songs by some advanced recommendation engine, we tend to miss out on many such tracks, which would potentially be of one's interest. Such interests can be defined by many such criterion, like one prefers instrumentals over vocals, or one can take interest to the \textbf{dancability} (having a rhythm and style that people can dance to) of a track. But such information is seldom available publicly. We decide to tackle this problem by showing the users a detailed audio analysis for each track, along with audio features that might take their interest, so that they can decide whether it exactly caters to their interest.
@@ -76,6 +78,10 @@ The data access layer of a piece of website, ideally done through a framework an
 ### Purchasing tracks as a user
 
 ![Place order](/static/img/place-order.png?raw=true)
+
+## Installation
+
+Please see the following [step-by-step guide](/setup) for seting up a working demo in Windows.
 
 ## Additional features
 
