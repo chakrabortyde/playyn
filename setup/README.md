@@ -28,30 +28,30 @@ The following are expected to be working in order:
 2. Clone the project **OR** download and extract the provided `playyn.zip`
 3. Navigate to the project folder
 4. Open a command prompt
-  1. Now run the following commands:
-  ```
-  pip install pymysql flaskpip flask_cors jinja2
-  ```
-  2. If no errors are shown, proceed to next step
-5. Open MySQL Workbench
-6. Create new MySQL Connection if no exists
-7. Here we have two options:
-  1. Import dump file `playyn_dump.sql`
-  2. If by any chance that does not work, we can open all .sql files in `/sql` folder and run in the following order:
-    1. projectchakrabortyd.create_table.sql
-    2. projectchakrabortyd.procedure.sql
-    3. projectchakrabortyd.function.sql
-    4. projectchakrabortyd.populate_table.sql
-8. Open the `.config` file in project folder
-9. Enter the necessary database credentials (database: `playyn`)
-10. Open the command prompt again in the base project folder that contains the file `app.py`
-  1. Now run the following command:
-  ```
-  flask run
-  ```
-  2. Copy the URL showing after ‘Running on’
+    1. Now run the following commands:
+    ```
+    pip install pymysql flaskpip flask_cors jinja2
+    ```
+    2. If no errors are shown, proceed to the next step
+6. Open MySQL Workbench
+7. Create a new MySQL Connection if not exists
+8. Here we have two options:
+    1. Import dump file `playyn_dump.sql`
+    2. If by any chance that does not work, we can open all .sql files in `/sql` folder and run in the following order:
+        1. `rojectchakrabortyd.create_table.sql`
+        2. `projectchakrabortyd.procedure.sql`
+        3. `projectchakrabortyd.function.sql`
+        4. `projectchakrabortyd.populate_table.sql`
+9. Open the `.config` file in the project folder
+10. Enter the necessary database credentials (database: `playyn`)
+11. Open the command prompt again in the base project folder that contains the file `app.py`
+    1. Now run the following command:
+    ```
+    flask run
+    ```
+    2. Copy the URL showing after **"Running on"**
 11. Open a browser (Preferably Chrome)
-  1. Paste the URL in the address bar
+    1. Paste the URL in the address bar
 12. The setup should be complete at this point.
 
 ## Technical Specifications
@@ -113,12 +113,12 @@ This section is a compilation of the future work planned for this project:
 
 ### Planned use of database
 
-This database can be used as an extensive resource for storing various artist information, their associated album and track information along with track metadata such as its upload date, duration, acousticness, danceability, energy, instrumentalness, keynotes, liveness, loudness, scales, speechiness, tempo and valence. These can help analyze individual tracks and in the future assist customers in making a informed choice from their recommended play lists.
+This database can be used as an extensive resource for storing various artist information, their associated album and track information along with track metadata such as its upload date, duration, acousticness, danceability, energy, instrumentalness, keynotes, liveness, loudness, scales, speechiness, tempo, and valence. These can help analyze individual tracks and in the future assist customers in making an informed choice from their recommended playlists.
 
 ### Potential areas for added functionality
 
 The potential areas for added functionality can be identified as:
 - Including session-based time-limited logins
 - Preserving passwords in a secured hashed manner
-- Better way to transform data in front-end
+- A better way to transform data in the front-end
 - UI improvements
