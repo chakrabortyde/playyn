@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Playyn - Online Music Store</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="../static/css/mdb.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <style>
+        body {
+            font-family: 'Poppins', "sans-serif";
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+            <div class="btn-group">
+                <a href="{{ url_for('index') }}">
+                    <button type="button"
+                            class="btn btn-outline-light"
+                    >
+                        Dashboard
+                    </button>
+                </a>
+                <button type="button"
+                        class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('songs') }}">Browse all songs</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('albums') }}">Browse all albums</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('artists') }}">Browse all artists</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="justify-content-center">
+                <h2 class="text-white">Playyn</h2>
+            </div>
+            <div class="btn-group">
+                {{ login_or_profile|safe }}
+                <button type="button"
+                        class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                {{ sign_up_or_sign_out|safe }}
+            </div>
+        </div>
+    </nav>
+    <div class="border d-flex align-items-center justify-content-center" style="height: 80vh;">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Login</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-outline mb-4">
+                    <input type="text"
+                           id="email_address"
+                           class="form-control form-control-lg"/>
+                    <label class="form-label" for="email_address">Email address</label>
+                </div>
+                <div class="form-outline">
+                    <input type="password"
+                           id="password"
+                           class="form-control form-control-lg"/>
+                    <label class="form-label" for="password">Password</label>
+                </div>
+            </div>
+            <div class="d-none" id="login_error">
+                    <p class="alert-danger d-flex align-items-center justify-content-center m-0 p-0">
+                        Email or password is incorrect.
+                    </p>
+                    <p class="alert-danger d-flex align-items-center justify-content-center m-0 p-0">
+                        If you don't have an account,
+                    </p>
+                    <p class="alert-danger d-flex align-items-center justify-content-center m-0 p-0">
+                        please&nbsp;<a href="{{ url_for('signup') }}">sign up</a>.
+                    </p>
+                </div>
+            <div class="card-footer d-grid gap-2">
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn btn-outline-dark btn-lg"
+                            data-mdb-ripple-color="dark"
+                            onclick="login('customer')"
+                    >
+                        Login as customer
+                    </button>
+                    <button type="button"
+                            class="btn btn-outline-dark btn-lg"
+                            data-mdb-ripple-color="dark"
+                            onclick="login('artist')"
+                    >
+                        Login as artist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/mdb.min.js"></script>
+<script src="https://kit.fontawesome.com/548a35821d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function login(role) {
+        const data = {
+            "role": role,
+            "email_address": document.getElementById('email_address').value,
+            "password": document.getElementById('password').value
+        };
+        if (data.email_address !== "" && data.password !== "") {
+            $.ajax({
+                url: "{{ url_for('login') }}",
+                type: 'POST',
+                data: JSON.stringify(data),
+                success: function (r) {
+                    const req = JSON.parse(r);
+                    if (req.code === 200) {
+                        window.location.href = req.redirect_url;
+                    } else {
+                        document.getElementById("login_error").classList.remove('d-none');
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

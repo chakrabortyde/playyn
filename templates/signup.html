@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Playyn - Online Music Store</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="../static/css/mdb.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <style>
+        body {
+            font-family: 'Poppins', "sans-serif";
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+            <div class="btn-group">
+                <a href="{{ url_for('index') }}">
+                    <button type="button"
+                            class="btn btn-outline-light"
+                    >
+                        Dashboard
+                    </button>
+                </a>
+                <button type="button"
+                        class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('songs') }}">Browse all songs</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('albums') }}">Browse all albums</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('artists') }}">Browse all artists</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="justify-content-center">
+                <h2 class="text-white">Playyn</h2>
+            </div>
+            <div class="btn-group">
+                {{ login_or_profile|safe }}
+                <button type="button"
+                        class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                {{ sign_up_or_sign_out|safe }}
+            </div>
+        </div>
+    </nav>
+    <div class="border d-flex align-items-center justify-content-center" style="height: 80vh;">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>Register</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <input type="text"
+                                           id="first_name"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="first_name">First name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <input type="text"
+                                           id="last_name"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="last_name">Last name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <input type="text"
+                                           id="gender"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="gender">Gender</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <input type="date"
+                                           id="date_of_birth"
+                                           class="form-control form-control-lg"/>
+                                    <label class="form-label" for="date_of_birth">Date of birth</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="email"
+                                   id="email_address"
+                                   class="form-control form-control-lg"/>
+                            <label class="form-label" for="email_address">Email address</label>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <select class="form-select form-select-lg custom-select"
+                                        id="country_code"
+                                >
+                                    <option selected>Choose...</option>
+                                    {% for c in country_code_list %}
+                                        <option value="{{ c.numeric_code }}">
+                                            {{ c.country_name + " (+" + c.numeric_code | string + ")" }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-outline">
+                                    <input type="number"
+                                           id="phone_number"
+                                           class="form-control form-control-lg"
+                                           maxlength="10"/>
+                                    <label class="form-label" for="phone_number">Phone Number</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-outline">
+                            <input type="password"
+                                   id="password"
+                                   class="form-control form-control-lg"/>
+                            <label class="form-label" for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-select form-select-lg custom-select mb-4"
+                                id="address_id"
+                                onchange="populateAddress(this.selectedIndex, this[this.selectedIndex].value, this[this.selectedIndex].text)"
+                        >
+                            <option selected>Select address...</option>
+                            {% for a in address_list %}
+                                <option value="{{ a.address_id }}">
+                                    {{ a.address_line_1 + ", " + a.address_line_2 | string() + ", " + a.city
+                                     + ", " + a.state + ", " + a.country + ", " + a.zipcode | string() }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="address_line_1"
+                                   class="form-control form-control-lg"
+                                   disabled
+                            />
+                            <label class="form-label" for="address_line_1">Address Line 1</label>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="text" id="address_line_2"
+                                   class="form-control form-control-lg"
+                                   disabled
+                            />
+                            <label class="form-label" for="address_line_2">Address Line 2</label>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-5">
+                                <div class="form-outline">
+                                    <input type="text" id="city"
+                                           class="form-control form-control-lg"
+                                           disabled
+                                    />
+                                    <label class="form-label" for="city">City</label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-outline">
+                                    <input type="text" id="state"
+                                           class="form-control form-control-lg"
+                                           disabled
+                                    />
+                                    <label class="form-label" for="state">State</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-outline">
+                                    <input type="text" id="country"
+                                           class="form-control form-control-lg"
+                                           disabled
+                                    />
+                                    <label class="form-label" for="country">Country</label>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-outline">
+                                    <input type="number"
+                                           id="zipcode"
+                                           class="form-control form-control-lg"
+                                           disabled
+                                    />
+                                    <label class="form-label" for="zipcode">Zipcode</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-none" id="sign_up_error">
+                <p class="alert-danger d-flex align-items-center justify-content-center m-0 p-0">
+                    Email or phone number already exists. If you have an account, please&nbsp;<a
+                        href="{{ url_for('login') }}">login</a>.
+                </p>
+            </div>
+            <div class="card-footer d-grid gap-2">
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn btn-outline-dark btn-lg"
+                            data-mdb-ripple-color="dark"
+                            onclick="register('customer')"
+                    >
+                        Register as customer
+                    </button>
+                    <button type="button"
+                            class="btn btn-outline-dark btn-lg"
+                            data-mdb-ripple-color="dark"
+                            onclick="register('artist')"
+                    >
+                        Register as artist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/mdb.min.js"></script>
+<script src="https://kit.fontawesome.com/548a35821d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function populateAddress(i, val, text) {
+        if (i === 0) {
+            document.getElementById('address_id').value = "";
+            document.getElementById('address_line_1').value = "";
+            document.getElementById('address_line_2').value = "";
+            document.getElementById('city').value = "";
+            document.getElementById('state').value = "";
+            document.getElementById('country').value = "";
+            document.getElementById('zipcode').value = "";
+        } else {
+            const address = text.split(', ');
+            document.getElementById('address_id').value = "";
+            document.getElementById('address_line_1').value = "";
+            document.getElementById('address_line_2').value = "";
+            document.getElementById('city').value = "";
+            document.getElementById('state').value = "";
+            document.getElementById('country').value = "";
+            document.getElementById('zipcode').value = "";
+            document.getElementById('address_id').value = i;
+            document.getElementById('address_line_1').value = address[0];
+            document.getElementById('address_line_2').value = address[1];
+            document.getElementById('city').value = address[2];
+            document.getElementById('state').value = address[3];
+            document.getElementById('country').value = address[4];
+            document.getElementById('zipcode').value = address[5];
+        }
+    }
+
+    function register(role) {
+        const data = {
+            "role": role,
+            "first_name": document.getElementById('first_name').value,
+            "last_name": document.getElementById('last_name').value,
+            "gender": document.getElementById('gender').value,
+            "date_of_birth": document.getElementById('date_of_birth').value,
+            "address_id": document.getElementById('address_id').value,
+            "email_address": document.getElementById('email_address').value,
+            "phone_number": document.getElementById('country_code').value
+                + (document.getElementById('phone_number')).value,
+            "password": document.getElementById('password').value
+        };
+        if (data.first_name !== "" && data.last_name !== ""
+            && data.email_address !== "" && data.password !== "") {
+            $.ajax({
+                url: "{{ url_for('signup') }}",
+                type: 'POST',
+                data: JSON.stringify(data),
+                success: function (r) {
+                    const req = JSON.parse(r);
+                    if (req.code === 200) {
+                        window.location.href = req.redirect_url;
+                    } else {
+                        document.getElementById("sign_up_error").classList.remove('d-none');
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

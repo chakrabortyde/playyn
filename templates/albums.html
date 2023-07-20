@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Playyn - Online Music Store</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <link rel="stylesheet" href="../static/css/mdb.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <style>
+        body {
+            font-family: 'Poppins', "sans-serif";
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+        <div class="container-fluid">
+            <div class="btn-group">
+                <a href="{{ url_for('index') }}">
+                    <button type="button"
+                            class="btn btn-outline-light"
+                    >
+                        Dashboard
+                    </button>
+                </a>
+                <button type="button"
+                        class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('songs') }}">Browse all songs</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('albums') }}">Browse all albums</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ url_for('artists') }}">Browse all artists</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="justify-content-center">
+                <h2 class="text-white">Playyn</h2>
+            </div>
+            <div class="btn-group">
+                {{ login_or_profile|safe }}
+                <button type="button"
+                        class="btn btn-outline-light dropdown-toggle dropdown-toggle-split"
+                        data-mdb-toggle="dropdown"
+                        aria-expanded="false"
+                >
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                {{ sign_up_or_sign_out|safe }}
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <table class="table text-center">
+                <thead>
+                <tr>
+                    <td></td>
+                    <td>Title</td>
+                    <td>Band</td>
+                    <td>Tracks</td>
+                    <td>Released</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% for s in all_albums %}
+                    <tr>
+                        <td class="p-1">
+                            <img src="{{ s.album_icon }}"
+                                 class="img-fluid"
+                                 width="48"
+                                 height="48"
+                                 alt="{{ (s.album_name + s.band_name) | replace(" ", "") | lower }}">
+                        </td>
+                        <td>{{ s.album_name }}</td>
+                        <td>{{ s.band_name }}</td>
+                        <td>{{ s.track_count }}</td>
+                        <td>{{ s.album_release }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/mdb.min.js"></script>
+<script src="https://kit.fontawesome.com/548a35821d.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</body>
+</html>
