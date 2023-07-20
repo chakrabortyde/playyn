@@ -61,13 +61,21 @@ The data access layer of a piece of website, ideally done through a framework an
 
 ## UML diagram
 
-![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/uml.png?raw=true)
+![UML](/static/img/uml.png?raw=true)
 
 ## Activity diagram
 
-![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/ad2.png?raw=true)
-![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/ad1.png?raw=true)
-![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/ad3.png?raw=true)
+### Registering as a new artist
+
+![Artist creation](/static/img/artist-creation.png?raw=true)
+
+### Adding new tracks as an artist
+
+![Adding a track](/static/img/adding-a-track.png?raw=true)
+
+### Purchasing tracks as a user
+
+![Place order](/static/img/place-order.png?raw=true)
 
 ## Additional features
 
