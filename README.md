@@ -61,13 +61,13 @@ The data access layer of a piece of website, ideally done through a framework an
 
 ## UML diagram
 
-![alt text](https://github.com/chakrabortyde/playyn/static/img/uml.png?raw=true)
+![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/uml.png?raw=true)
 
 ## Activity diagram
 
-![alt text](https://github.com/chakrabortyde/playyn/static/img/ad2.png?raw=true)
-![alt text](https://github.com/chakrabortyde/playyn/static/img/ad1.png?raw=true)
-![alt text](https://github.com/chakrabortyde/playyn/static/img/ad3.png?raw=true)
+![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/ad2.png?raw=true)
+![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/ad1.png?raw=true)
+![alt text](https://github.com/chakrabortyde/playyn/blob/main/static/img/ad3.png?raw=true)
 
 ## Additional features
 
