@@ -28,84 +28,84 @@ The following are expected to be working in order:
 2. Clone the project **OR** download and extract the provided `playyn.zip`
 3. Navigate to the project folder
 4. Open a command prompt
-	a. Now run the following commands:
+	4.1. Now run the following commands:
 	```
 	pip install pymysql flaskpip flask_cors jinja2
 	```
-	b. If no errors are shown, proceed to next step
+	4.2. If no errors are shown, proceed to next step
 5. Open MySQL Workbench
 6. Create new MySQL Connection if no exists
 7. Here we have two options:
-	a. Import dump file `playyn_dump.sql`
-	b. If by any chance that does not work, we can open all .sql files in `/sql` folder and run in the following order:
-		i. projectchakrabortyd.create_table.sql
-		ii. projectchakrabortyd.procedure.sql
-		iii. projectchakrabortyd.function.sql
-		iv. projectchakrabortyd.populate_table.sql
+	7.1. Import dump file `playyn_dump.sql`
+	7.2. If by any chance that does not work, we can open all .sql files in `/sql` folder and run in the following order:
+		1. projectchakrabortyd.create_table.sql
+		2. projectchakrabortyd.procedure.sql
+		3. projectchakrabortyd.function.sql
+		4. projectchakrabortyd.populate_table.sql
 8. Open the `.config` file in project folder
 9. Enter the necessary database credentials (database: `playyn`)
 10. Open the command prompt again in the base project folder that contains the file `app.py`
-	a. Now run the following command:
+	10.1. Now run the following command:
 	```
 	flask run
 	```
-	b. Copy the URL showing after ‘Running on’
+	10.2. Copy the URL showing after ‘Running on’
 11. Open a browser (Preferably Chrome)
 	a. Paste the URL in the address bar
 12. The setup should be complete at this point.
 
 ## Technical Specifications
 
-Host language: Python
-MySQL connector: PyMySQL
-Backend Framework: Flask
-Other front-end technologies used: HTML, CSS, JavaScript, JQuery
+- Host language: Python
+- MySQL connector: PyMySQL
+- Backend Framework: Flask
+- Other front-end technologies used: HTML, CSS, JavaScript, JQuery
 
 ## UPDATE: UML Diagram
 
-![UML](/img/uml.png?raw=true)
+![UML](/setup/img/uml.png?raw=true)
 
 ## Logical Design
 
-![Logical Design](/img/logical-design.png?raw=true)
+![Logical Design](/setup/img/logical-design.png?raw=true)
 
 ## Final User Flow
 
 ### Create new artist
 
-![Create new artist](/img/create-new-artist.png?raw=true)
+![Create new artist](/setup/img/create-new-artist.png?raw=true)
 
 ### Create new customer
 
-![Create new customer](/img/create-new-customer.png?raw=true)
+![Create new customer](/setup/img/create-new-customer.png?raw=true)
 
 ### Login as artist
 
-![Login as artist](/img/login-as-artist.png?raw=true)
+![Login as artist](/setup/img/login-as-artist.png?raw=true)
 
 ### Login as customer
 
-![Login as customer](/img/login-as-customer.png?raw=true)
+![Login as customer](/setup/img/login-as-customer.png?raw=true)
 
 ### Edit artist
 
-![Edit artist](/img/edit-artist.png?raw=true)
+![Edit artist](/setup/img/edit-artist.png?raw=true)
 
 ### Edit customer
 
-![Edit customer](/img/edit-customer.png?raw=true)
+![Edit customer](/setup/img/edit-customer.png?raw=true)
 
 ### Delete artist profile
 
-![Delete artist profile](/img/delete-artist.png?raw=true)
+![Delete artist profile](/setup/img/delete-artist.png?raw=true)
 
 ### Delete customer profile
 
-![Delete customer profile](/img/delete-customer.png?raw=true)
+![Delete customer profile](/setup/img/delete-customer.png?raw=true)
 
 ### Create band
 
-![Create band](/img/create-band.png?raw=true)
+![Create band](/setup/img/create-band.png?raw=true)
 
 ## Future Work
 
