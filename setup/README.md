@@ -28,30 +28,30 @@ The following are expected to be working in order:
 2. Clone the project **OR** download and extract the provided `playyn.zip`
 3. Navigate to the project folder
 4. Open a command prompt
-	4.1. Now run the following commands:
-	```
-	pip install pymysql flaskpip flask_cors jinja2
-	```
-	4.2. If no errors are shown, proceed to next step
+  1. Now run the following commands:
+  ```
+  pip install pymysql flaskpip flask_cors jinja2
+  ```
+  2. If no errors are shown, proceed to next step
 5. Open MySQL Workbench
 6. Create new MySQL Connection if no exists
 7. Here we have two options:
-	7.1. Import dump file `playyn_dump.sql`
-	7.2. If by any chance that does not work, we can open all .sql files in `/sql` folder and run in the following order:
-		1. projectchakrabortyd.create_table.sql
-		2. projectchakrabortyd.procedure.sql
-		3. projectchakrabortyd.function.sql
-		4. projectchakrabortyd.populate_table.sql
+  1. Import dump file `playyn_dump.sql`
+  2. If by any chance that does not work, we can open all .sql files in `/sql` folder and run in the following order:
+    1. projectchakrabortyd.create_table.sql
+    2. projectchakrabortyd.procedure.sql
+    3. projectchakrabortyd.function.sql
+    4. projectchakrabortyd.populate_table.sql
 8. Open the `.config` file in project folder
 9. Enter the necessary database credentials (database: `playyn`)
 10. Open the command prompt again in the base project folder that contains the file `app.py`
-	10.1. Now run the following command:
-	```
-	flask run
-	```
-	10.2. Copy the URL showing after ‘Running on’
+  1. Now run the following command:
+  ```
+  flask run
+  ```
+  2. Copy the URL showing after ‘Running on’
 11. Open a browser (Preferably Chrome)
-	a. Paste the URL in the address bar
+  1. Paste the URL in the address bar
 12. The setup should be complete at this point.
 
 ## Technical Specifications
